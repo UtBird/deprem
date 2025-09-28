@@ -1,5 +1,3 @@
----
-
 # 🏗️ YOLO for Crack and Building Condition Detection
 
 This project uses **Python**, **OpenCV**, and **Ultralytics YOLO** to perform real-time detection of **cracks** and **building conditions** from live video streams. With multithreading and real-time video processing, it delivers high-performance results.
@@ -71,5 +69,3 @@ yolo-dual-detection/
 * **Crack Detection Window** → Displays detected cracks.
 * **Building Condition Window** → Displays building condition analysis results.
 * Bounding boxes are drawn in **pink** (`(255, 0, 102)`).
-
----
