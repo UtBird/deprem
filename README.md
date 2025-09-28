@@ -1,73 +1,75 @@
-YOLO ile Eş Zamanlı Çatlak ve Bina Durumu Tespiti
+---
 
-Bu proje, Ultralytics YOLO modelleri kullanarak aynı anda iki farklı nesne tespit modelini (çatlak tespiti ve bina durumu tespiti) tek bir video kaynağı üzerinden çalıştırır.
+# 🏗️ YOLO for Crack and Building Condition Detection
 
-🚀 Özellikler
+This project uses **Python**, **OpenCV**, and **Ultralytics YOLO** to perform real-time detection of **cracks** and **building conditions** from live video streams. With multithreading and real-time video processing, it delivers high-performance results.
 
-Aynı anda iki YOLO modeli çalıştırma
+## 📁 Project Structure
 
-Çoklu iş parçacığı (threading) desteği
+```
+yolo-dual-detection/
+├── catlak.pt        # YOLO model for crack detection
+├── bina.pt          # YOLO model for building condition detection
+├── main.py          # Main application file
+├── README.md        # Project documentation
+```
 
-Canlı kamera/harici video kaynağından görüntü alma
+## ⚙️ Features
 
-Çıktıları ayrı pencerelerde gösterme
+* 🧠 **Dual Model Support**: Runs two YOLO models simultaneously (crack + building).
+* 🎥 **Real-Time Video**: Processes input from a camera or external video source.
+* ⚡ **Multithreading**: Each model runs in a separate thread for better performance.
+* 🖼️ **Live Visualization**: Results are displayed in separate windows with bounding boxes and labels.
 
-📦 Gereksinimler
+## 🧩 Installation
 
-Projeyi çalıştırmadan önce aşağıdaki kütüphaneleri kurmalısınız:
+1. **Clone the Repository**
 
-pip install ultralytics opencv-python
+   ```bash
+   git clone https://github.com/UtBird/yolo-dual-detection.git
+   cd yolo-dual-detection
+   ```
 
-🔧 Kullanım
+2. **Install Dependencies**
 
-Eğitimli YOLO modellerinizi (catlak.pt ve bina.pt) proje dizinine koyun.
+   Requires **Python 3.8+**. Install the required libraries:
 
-Python dosyasını çalıştırın:
+   ```bash
+   pip install ultralytics opencv-python
+   ```
 
-python main.py
+## 🚀 Usage
 
+1. **Run the Main Application**
 
-İki farklı pencere açılacaktır:
+   ```bash
+   python main.py
+   ```
 
-catlak Tespiti → Çatlak tespit sonuçlarını gösterir
+   This command will start processing video input and run both models simultaneously.
 
-Bina durumu → Bina durumunu tespit eden modelin çıktısını gösterir
+2. **Change Video Source**
 
-Uygulamadan çıkmak için q tuşuna basın.
+   In the code, the video source is defined as:
 
-📂 Proje Yapısı
-├── main.py          # Ana Python dosyası
-├── catlak.pt        # Çatlak tespit modeli (YOLO)
-├── bina.pt          # Bina durumu tespit modeli (YOLO)
-└── README.md        # Proje açıklaması
+   ```python
+   video_thread = VideoCaptureThread(2)
+   ```
 
-🖼️ Görselleştirme
+   * `0` → Default system camera
+   * `1` → External camera
+   * `2` → Other sources
 
-Model tespit ettiği nesneleri dikdörtgen kutular ve etiketler ile çizer.
+   Adjust according to your setup.
 
-Kutular pembe renkte ((255, 0, 102)) çizilir.
+3. **Exit**
 
-⚙️ Video Kaynağı
+   Press **q** while the program is running to exit.
 
-Kodda kamera kaynağı şu şekilde ayarlanmıştır:
+## 📊 Output
 
-video_thread = VideoCaptureThread(2)
+* **Crack Detection Window** → Displays detected cracks.
+* **Building Condition Window** → Displays building condition analysis results.
+* Bounding boxes are drawn in **pink** (`(255, 0, 102)`).
 
-
-0 → Varsayılan bilgisayar kamerası
-
-1 → Harici kamera
-
-2 → Başka bir video kaynağı
-
-Kendi sisteminize göre değiştirebilirsiniz.
-
-📝 Notlar
-
-conf parametresi ile tahmin güven seviyesi ayarlanabilir:
-
-Çatlak modeli: conf=0.6
-
-Bina modeli: conf=0.4
-
-Aynı frame üzerinde iki model eş zamanlı çalıştırılır.
+---
